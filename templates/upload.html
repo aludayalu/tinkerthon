@@ -17,10 +17,10 @@ function httpGet(theUrl){
 }
 document.getElementById("submit").addEventListener("click",()=>{
     var subject="general"
-    if (document.getElementById("eng").value){
+    if (document.getElementById("eng").value===true){
         subject="eng"
     }
-    if (document.getElementById("eco").value){
+    if (document.getElementById("eco").value===true){
         subject="eco"
     }
     if (document.getElementById("fname").value!==""){
