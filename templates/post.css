@@ -1,0 +1,23 @@
+.post {
+  padding: 40px;
+}
+.single-author {
+  text-align: end;
+  margin-block: 20px;
+}
+
+.single-article {
+  text-align: justify;
+  line-height: 24px;
+}
+
+.toall {
+  background-color: var(--bggrey);
+  width: 200px;
+  border-radius: 4px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-inline: 40px;
+}

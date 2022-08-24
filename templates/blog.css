@@ -1,0 +1,41 @@
+.allposts {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  width: 25%;
+  border: 1px solid var(--grey);
+  margin-block: 5vh;
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.posttitle {
+  text-align: center;
+}
+
+.article {
+  height: 116px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: justify;
+  margin: 20px;
+}
+
+.author {
+  padding-inline: 20px;
+  text-align: end;
+}
+
+a {
+  align-self: flex-end;
+  border-top: 1px solid var(--grey);
+  display: block;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  cursor: pointer;
+}

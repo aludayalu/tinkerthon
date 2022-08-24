@@ -1,0 +1,26 @@
+.img {
+  height: 100vh;
+  width: 100vw;
+}
+* {
+  padding: 0;
+  margin: 0;
+}
+
+.overlay {
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  background: rgba(0, 0, 0, 0.8);
+  left: 0;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-size: 120px;
+  text-align: center;
+  color: white;
+}

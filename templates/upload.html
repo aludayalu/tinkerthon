@@ -1,0 +1,36 @@
+<label for="fname">Title : </label>
+<input type="text" id="fname" name="fname"><br><br>
+<label for="lname">Data : </label>
+<input type="text" id="lname" name="lname"><br><br>
+<input type="radio" id="eco" name="fav_language" value="HTML">
+<label for="html">Economics</label><br>
+<input type="radio" id="eng" name="fav_language" value="HTML">
+<label for="html">English</label><br>
+<p style="margin-top: 20px;"></p>
+<button id="submit">submit</button>
+<script>
+function httpGet(theUrl){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.send( null );
+    return xmlHttp.responseText;
+}
+document.getElementById("submit").addEventListener("click",()=>{
+    var subject="general"
+    if (document.getElementById("eng").value){
+        subject="eng"
+    }
+    if (document.getElementById("eco").value){
+        subject="eco"
+    }
+    if (document.getElementById("fname").value!==""){
+    if (document.getElementById("lname").value!==""){
+        if (subject==="general"){
+            httpGet(`http://127.0.0.1:5000/general_upload?title=${document.getElementById("fname").value}&data=${document.getElementById("lname").value}`)
+        }else{
+            httpGet(`http://127.0.0.1:5000/upload?title=${document.getElementById("fname").value}&data=${document.getElementById("lname").value}&subject=${subject}`)
+        }
+    }
+}
+})
+</script>
