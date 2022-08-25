@@ -77,12 +77,19 @@ def blog():
         display: flex;
         justify-content:center;
         align-items:center;
-
     }
+    body{
+        background-repeat: no-repeat; 
+        background-size: cover; 
+        background-image: url("https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)");
+        }
+
     .card{
+        border-radius:10px;
         box-shadow: rgba(99,99,99,0.2) 0px 2px 8px 0px;
         padding: 1em;
         font-family:'Lato', sans-serif;
+        background-color:white;
     }
     </style>
     <div class="parav">
@@ -119,6 +126,36 @@ def oil():
         return redirect("/")
     layout='<link rel="stylesheet" href="blog.css"><div class"allposts" style="display:flex;justify-content:space-evenly;align-items:center;flex-wrap:wrap">'
     base='<div class="card"> <h2 class="posttitle">.title.</h2> <div class="author" style="text-align: center;">uname</div><div class="article"> data </div><div class="readmore"> <a href="#" class="open" >Read More</a> </div></div> '
+    layout+="""
+    <style>
+    .readmore{
+        border-bottom-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+    }
+    body{
+        background-repeat: no-repeat; 
+        background-size: cover; 
+        background-image: url("https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)");
+    </style>
+    <div class="w3-top">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    .w3-wide {letter-spacing: 10px;}
+    .w3-hover-opacity {cursor: pointer;}
+  </style>
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="/" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>HOME</p></a>
+  </div>
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="/blogs" class="w3-bar-item w3-button" onclick="toggleFunction()">BLOGS</a>
+    <a href="/logout" class="w3-bar-item w3-button" onclick="toggleFunction()">LOGOUT</a>
+  </div>
+</div>
+
+    """
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False:
         return redirect('/')
     blogs=json.loads(open("subjects.json").read())["oil"]
@@ -133,6 +170,31 @@ def marineeng():
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False or "marine" not in get_user_details(request.cookies.get('id'))[1]:
         return redirect("/")
     layout='<link rel="stylesheet" href="blog.css"><div class"allposts" style="display:flex;justify-content:space-evenly;align-items:center;flex-wrap:wrap">'
+    layout+="""
+    <style>
+    body{
+        background-repeat: no-repeat; 
+        background-size: cover; 
+        background-image: url("https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)");
+    </style>
+    <div class="w3-top">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    .w3-wide {letter-spacing: 10px;}
+    .w3-hover-opacity {cursor: pointer;}
+  </style>
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="/" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>HOME</p></a>
+  </div>
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="/blogs" class="w3-bar-item w3-button" onclick="toggleFunction()">BLOGS</a>
+    <a href="/logout" class="w3-bar-item w3-button" onclick="toggleFunction()">LOGOUT</a>
+  </div>
+</div>
+    """
     base='<div class="card"> <h2 class="posttitle">.title.</h2> <div class="author" style="text-align: center;">uname</div><div class="article"> data </div><div class="readmore"> <a href="#" class="open" >Read More</a> </div></div> '
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False:
         return redirect('/')
@@ -173,11 +235,17 @@ def blogs():
   <style>
     .w3-wide {letter-spacing: 10px;}
     .w3-hover-opacity {cursor: pointer;}
+    body{
+        background-repeat: no-repeat; 
+        background-size: cover; 
+        background-image: url("https://images.pexels.com/photos/691668/pexels-photo-691668.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2)");
+        }
   </style>
   <div class="w3-bar" id="myNavbar">
     <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
       <i class="fa fa-bars"></i>
     </a>
+    <a href="/" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>HOME</p></a>
     <a href="/blogs" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>BLOGS</p></a>
     <a href="/panel" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>UPLOAD</p></a>
     <a href="/oilspill" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>OIL SPILLS</p></a>
@@ -190,7 +258,7 @@ def blogs():
     <a href="/logout" class="w3-bar-item w3-button" onclick="toggleFunction()">LOGOUT</a>
   </div>
 </div>
-<p style="height:30px;"></p>
+<p style="height:80px;"></p>
     """
     layout+='<div class"allposts" style="display:flex;justify-content:space-evenly;align-items:center;flex-wrap:wrap;">'
     base='<div class="card"> <h2 class="posttitle">.title.</h2> <div class="author" style="text-align: center;">uname</div><div class="article"> data </div><div class="readmore"> <a href="#" class="open" >Read More</a> </div></div> '
