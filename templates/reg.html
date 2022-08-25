@@ -65,13 +65,13 @@ div {
         <div>
           <p>Subjects</p>
           <div class="sub">
-            <label for="Economics">Economics</label>
-            <input type="checkbox" id="eco" />
+            <label for="Oil">Oil</label>
+            <input type="checkbox" id="oil" />
             
           </div>
           <div class="sub">
-            <label for="English">English</label>
-            <input type="checkbox" id="eng" />
+            <label for="Marine">Marine</label>
+            <input type="checkbox" id="marine" />
           </div>
           <div class="sub">
             <label for="teah">Teacher</label>
@@ -87,11 +87,11 @@ div {
     document.getElementById("track").addEventListener("click",()=>{
         var teacher=document.getElementById('teacher').value
         var subjects=[]
-        if (document.getElementById("eng").checked){
-            subjects.push("eng")
+        if (document.getElementById("marine").checked){
+            subjects.push("marine")
         }
-        if (document.getElementById("eco").checked){
-            subjects.push("eco")
+        if (document.getElementById("oil").checked){
+            subjects.push("oil")
         }
         var pwd=document.getElementById("password").value
         var name = document.getElementById("name").value

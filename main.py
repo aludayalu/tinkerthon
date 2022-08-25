@@ -100,43 +100,43 @@ def blog():
     for x in blogs:
         if x["uuid"]==args["id"]:
             return make_response(base.replace("_title_",x["title"]).replace("_text_",x["data"]))
-    if "eco" in get_user_details(request.cookies.get('id'))[1]:
-        blogs=json.loads(open("subjects.json").read())["eco"]
+    if "oil" in get_user_details(request.cookies.get('id'))[1]:
+        blogs=json.loads(open("subjects.json").read())["oil"]
         for x in blogs:
             if x["uuid"]==args["id"]:
                 return make_response(base.replace("_title_",x["title"]).replace("_text_",x["data"]))
-    if "eng" in get_user_details(request.cookies.get('id'))[1]:
-        blogs=json.loads(open("subjects.json").read())["eng"]
+    if "marine" in get_user_details(request.cookies.get('id'))[1]:
+        blogs=json.loads(open("subjects.json").read())["marine"]
         for x in blogs:
             if x["uuid"]==args["id"]:
                 return make_response(base.replace("_title_",x["title"]).replace("_text_",x["data"]))
     return make_response("Couldn't find ur blog")
 
-@app.route('/eco')
-def eco():
+@app.route('/oil')
+def oil():
     args=request.args.to_dict()
-    if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False or "eco" not in get_user_details(request.cookies.get('id'))[1]:
-        return make_response("Unauth Access")
+    if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False or "oil" not in get_user_details(request.cookies.get('id'))[1]:
+        return redirect("/")
     layout='<link rel="stylesheet" href="blog.css"><div class"allposts" style="display:flex;justify-content:space-evenly;align-items:center;flex-wrap:wrap">'
     base='<div class="card"> <h2 class="posttitle">.title.</h2> <div class="author" style="text-align: center;">uname</div><div class="article"> data </div><div class="readmore"> <a href="#" class="open" >Read More</a> </div></div> '
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False:
         return redirect('/')
-    blogs=json.loads(open("subjects.json").read())["eco"]
+    blogs=json.loads(open("subjects.json").read())["oil"]
     blogs.reverse()
     for x in blogs:
         layout+=base.replace("uname",f"@{x['uploader']}").replace("data",x["data"]).replace(".title.",x["title"]).replace("#",f'http://127.0.0.1:5000/blog?id={x["uuid"]}')
     return make_response(layout)
 
-@app.route('/eng')
-def eng():
+@app.route('/marine')
+def marineeng():
     args=request.args.to_dict()
-    if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False or "eng" not in get_user_details(request.cookies.get('id'))[1]:
-        return make_response("Unauth Access")
+    if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False or "marine" not in get_user_details(request.cookies.get('id'))[1]:
+        return redirect("/")
     layout='<link rel="stylesheet" href="blog.css"><div class"allposts" style="display:flex;justify-content:space-evenly;align-items:center;flex-wrap:wrap">'
     base='<div class="card"> <h2 class="posttitle">.title.</h2> <div class="author" style="text-align: center;">uname</div><div class="article"> data </div><div class="readmore"> <a href="#" class="open" >Read More</a> </div></div> '
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False:
         return redirect('/')
-    blogs=json.loads(open("subjects.json").read())["eng"]
+    blogs=json.loads(open("subjects.json").read())["marine"]
     blogs.reverse()
     for x in blogs:
         layout+=base.replace("uname",f"@{x['uploader']}").replace("data",x["data"]).replace(".title.",x["title"]).replace("#",f'http://127.0.0.1:5000/blog?id={x["uuid"]}')
@@ -148,7 +148,9 @@ def blog_upload():
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False or get_user_details(request.cookies.get('id'))[2]!="true" or args["subject"] not in get_user_details(request.cookies.get('id'))[1]:
         return make_response("Unauth Access")
     blogs=json.loads(open(f"subjects.json").read())
+    print(args)
     blogs[args['subject']].append({"uploader":request.cookies.get('id'),"uuid":uidgen(),"data":args['data'],"title":args["title"]})
+    print(blogs)
     open(f"subjects.json","w+").write(str(blogs).replace("'",'"'))
     return make_response("Blog successfully added!")
 
@@ -217,7 +219,7 @@ def give_landingcss():
 def marine():
     return make_response(open("templates/marinelife.html").read())
 @app.route("/oilspill")
-def oil():
+def oill():
     return render_template("oilspill.html")
 @app.route("/plastic")
 def plastic():

@@ -67,6 +67,29 @@ input[type=submit]:hover {
   }
 }
 </style>
+<div class="w3-top">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <style>
+    .w3-wide {letter-spacing: 10px;}
+    .w3-hover-opacity {cursor: pointer;}
+  </style>
+  <div class="w3-bar" id="myNavbar">
+    <a class="w3-bar-item w3-button w3-hover-black w3-hide-medium w3-hide-large w3-right" href="javascript:void(0);" onclick="toggleFunction()" title="Toggle Navigation Menu">
+      <i class="fa fa-bars"></i>
+    </a>
+    <a href="/blogs" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>BLOGS</p></a>
+    <a href="/panel" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>UPLOAD</p></a>
+    <a href="/oilspill" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>OIL SPILLS</p></a>
+    <a href="/plastic" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>PLASTIC POLLUTION</p></a>
+    <a href="/marine_life" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>MARINE LIFE</p></a>
+    <a href="/logout" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>LOGOUT</p></a>
+  </div>
+  <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
+    <a href="/blogs" class="w3-bar-item w3-button" onclick="toggleFunction()">BLOGS</a>
+    <a href="/logout" class="w3-bar-item w3-button" onclick="toggleFunction()">LOGOUT</a>
+  </div>
+</div>
+<p style="height:50px;"></p>
 <header><h1 style="text-align: centre;justify-content:centre;">Blog Upload Panel</h1></header>
 <div class="container">
     <div class="row">
@@ -86,10 +109,10 @@ input[type=submit]:hover {
       </div>
     </div>
     <br>
-    <input type="radio" id="eco" name="fav_language" value="HTML">
-<label for="html">Economics</label><br>
-<input type="radio" id="eng" name="fav_language" value="HTML">
-<label for="html">English</label><br>
+    <input type="radio" id="oil" name="fav_language">
+<label for="html">Oil</label><br>
+<input type="radio" id="marine" name="fav_language">
+<label for="html">Marine</label><br>
 <p style="margin-top: 20px;"></p>
 
       <button id="submit" style="background-color: white; border-radius:10px;">Submit</button>
@@ -106,11 +129,12 @@ function httpGet(theUrl){
 }
 document.getElementById("submit").addEventListener("click",()=>{
     var subject="general"
-    if (document.getElementById("eng").value===true){
-        subject="eng"
+    console.log(document.getElementById("marine").value,document.getElementById("oil").value)
+    if (document.getElementById("marine").checked){
+        subject="marine"
     }
-    if (document.getElementById("eco").value===true){
-        subject="eco"
+    if (document.getElementById("oil").checked){
+        subject="oil"
     }
     if (document.getElementById("fname").value!==""){
     if (document.getElementById("lname").value!==""){

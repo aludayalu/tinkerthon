@@ -13,6 +13,7 @@ body, html {
   height: 100%;
   color: rgb(0, 0, 0);
   line-height: 1.8;
+  background-image: "https://www.w3schools.com/w3images/p5.jpg";
 }
 .bgimg-1 {
   background-attachment: fixed;
@@ -36,8 +37,6 @@ a{
 </style>
 </head>
 <body>
-
-<!-- Navbar (sit on top) -->
 <div class="w3-top">
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
   <style>
@@ -53,6 +52,8 @@ a{
     <a href="/oilspill" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>OIL SPILLS</p></a>
     <a href="/plastic" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>PLASTIC POLLUTION</p></a>
     <a href="/marine_life" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>MARINE LIFE</p></a>
+    <a href="/marine" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>MARINE BLOGS</p></a>
+    <a href="/oil" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>OIL BLOGS</p></a>
     <a href="/logout" class="w3-bar-item w3-button" onclick="toggleFunction()"><p>LOGOUT</p></a>
   </div>
   <div id="navDemo" class="w3-bar-block w3-white w3-hide w3-hide-large w3-hide-medium">
@@ -68,36 +69,67 @@ a{
   </div>
 </div>
 
-<script>
-// Modal Image Gallery
-function onClick(element) {
-  document.getElementById("img01").src = element.src;
-  document.getElementById("modal01").style.display = "block";
-  var captionText = document.getElementById("caption");
-  captionText.innerHTML = element.alt;
+<style>
+img {
+    width: 100%;
+    justify-content: center;
+    text-align: center;
+    opacity: 1;
+    display: block;
+    width: 100%;
+    height: auto;
+    transition: .5s ease;
+    backface-visibility: hidden;
+    vertical-align: middle;
+}
+.mySlides {display: none}
+
+.slideshow-container {
+    position: relative;
+}
+.fade {
+    animation-name: fade;
+    animation-duration: 2s;
 }
 
-// Change style of navbar on scroll
-window.onscroll = function() {myFunction()};
-function myFunction() {
-    var navbar = document.getElementById("myNavbar");
-    if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-        navbar.className = "w3-bar" + " w3-card" + " w3-animate-top" + " w3-white";
-    } else {
-        navbar.className = navbar.className.replace(" w3-card w3-animate-top w3-white", "");
-    }
+@keyframes fade {
+    from {opacity: .1} 
+    to {opacity: 1}
 }
 
-// Used to toggle the menu on small screens when clicking on the menu button
-function toggleFunction() {
-    var x = document.getElementById("navDemo");
-    if (x.className.indexOf("w3-show") == -1) {
-        x.className += " w3-show";
-    } else {
-        x.className = x.className.replace(" w3-show", "");
-    }
+</style>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div class="slideshow-container">
+  <div class="mySlides fade">
+      <img src="https://www.w3schools.com/howto/img_snow_wide.jpg" style="width:100%">
+      <!---<div class="text">Caption Text</div> --->
+  </div>
+  
+  <div class="mySlides fade">
+      <img src="https://www.w3schools.com/howto/img_mountains_wide.jpg" style="width:100%">
+  </div>
+  
+  <div class="mySlides fade">
+      <img src="https://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
+  </div>
+  <br><br><br><br><br><br><br>
+  </div>
+  
+  <script>
+  let slideIndex = 0;
+  showSlides();
+  
+  function showSlides() {
+      let i;
+      let slides = document.getElementsByClassName("mySlides");
+      for (i = 0; i < slides.length; i++) {
+      slides[i].style.display = "none";  
 }
-</script>
-
+      slideIndex++;
+      if (slideIndex > slides.length) {slideIndex = 1}    
+      slides[slideIndex-1].style.display = "block";
+    setTimeout(showSlides, 2000); // Change image every 2 seconds
+  }
+  </script> 
 </body>
 </html>
