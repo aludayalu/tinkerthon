@@ -125,9 +125,12 @@ def oil():
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False or "oil" not in get_user_details(request.cookies.get('id'))[1]:
         return redirect("/")
     layout='<link rel="stylesheet" href="blog.css"><div class"allposts" style="display:flex;justify-content:space-evenly;align-items:center;flex-wrap:wrap">'
-    base='<div class="card"> <h2 class="posttitle">.title.</h2> <div class="author" style="text-align: center;">uname</div><div class="article"> data </div><div class="readmore"> <a href="#" class="open" >Read More</a> </div></div> '
+    base='<div class="card" style="marin-top:100px; "> <h2 class="posttitle">.title.</h2> <div class="author" style="text-align: center;">uname</div><div class="article"> data </div><div class="readmore"> <a href="#" class="open" >Read More</a> </div></div> '
     layout+="""
     <style>
+    .card{
+        margin-top:7.5%;
+    }
     .readmore{
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
@@ -155,6 +158,7 @@ def oil():
   </div>
 </div>
 
+
     """
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False:
         return redirect('/')
@@ -172,6 +176,9 @@ def marineeng():
     layout='<link rel="stylesheet" href="blog.css"><div class"allposts" style="display:flex;justify-content:space-evenly;align-items:center;flex-wrap:wrap">'
     layout+="""
     <style>
+    .card{
+        margin-top:7.5%;
+    }
     body{
         background-repeat: no-repeat; 
         background-size: cover; 
@@ -194,6 +201,7 @@ def marineeng():
     <a href="/logout" class="w3-bar-item w3-button" onclick="toggleFunction()">LOGOUT</a>
   </div>
 </div>
+<p style="height:80px;"></p>
     """
     base='<div class="card"> <h2 class="posttitle">.title.</h2> <div class="author" style="text-align: center;">uname</div><div class="article"> data </div><div class="readmore"> <a href="#" class="open" >Read More</a> </div></div> '
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False:
