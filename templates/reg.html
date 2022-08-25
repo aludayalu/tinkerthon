@@ -5,12 +5,46 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="reg.css" />
-    <link rel="stylesheet" href="global.css" />
+<style>
+  @import url("https://fonts.googleapis.com/css?family=Poppins");
+*{
+  font-family: 'Poppins';font-size: 22px;
+}
+  input[type=text], select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+div {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
     <title>Document</title>
   </head>
   <body>
-    <div class="login">
+    <div class="register">
       <h1>Register</h1>
         <div>
           <label for="name">Name</label>
@@ -38,6 +72,7 @@
           </div>
         </div>
         <button id="track">Register</button>
+        <button id="login">Already a user?</button>
     </div>
   </body>
   <script>
@@ -61,6 +96,9 @@
 }
 httpGet(`http://127.0.0.1:5000/register?id=${name}&password=${pwd}&subjects=${subjects}&teacher=${teacher}`)
 window.location.href = "http://127.0.0.1:5000/";
+    })
+    document.getElementById("login").addEventListener("click",()=>{
+      window.location.href = "http://127.0.0.1:5000?login=true";
     })
   </script>
 </html>

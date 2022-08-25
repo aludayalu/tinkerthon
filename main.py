@@ -21,10 +21,23 @@ def get_user_details(user):
 
 @app.route('/')
 def home():
+    args=request.args.to_dict()
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False:
+        if "login" in list(args.keys()) and args["login"]=="true":
+            return render_template("login.html")
         return render_template("reg.html")
     name = request.cookies.get('id')
-    return '<h1>welcome ' + str(name) + '</h1>'
+    return make_response(open("templates/landing.html").read().replace('<!--insert-->','Welcome ' + str(name)))
+
+@app.route('/login')
+def login():
+    args=request.args.to_dict()
+    if open(f"users/{args['id']}").read().split(",,")[0]==args["password"]:
+        resp=make_response("You have successfully logged in ! <script>window.location.href='/'</script>")
+        resp.set_cookie("id",args["id"])
+        resp.set_cookie("password",args["password"])
+        return resp
+    return make_response("Unsuccessful Login!")
 
 @app.route('/register')
 def reg():
@@ -77,11 +90,12 @@ def eco():
     args=request.args.to_dict()
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False or "eco" not in get_user_details(request.cookies.get('id'))[1]:
         return make_response("Unauth Access")
-    layout="""<style>.allposts{display: flex; flex-wrap: wrap; justify-content: space-around;}.card{width: 25%; border: 1px solid var(--grey); margin-block: 5vh; border-radius: 4px; display: flex; flex-direction: column; background-color :ghostwhite;}.posttitle{text-align: center;}.article{height: 116px; overflow: hidden; text-overflow: ellipsis; text-align: justify; margin: 20px;}.author{padding-inline: 20px; text-align: end;}a{align-self: flex-end; border-top: 1px solid var(--grey); display: block; text-align: center; padding: 10px; text-decoration: none; cursor: pointer;}</style>"""
+    layout='<link rel="stylesheet" href="blog.css">'
     base='<div class="allposts"> <div class="card"> <h2 class="posttitle">title</h2> <div class="author">uname</div><div class="article"> data </div><div class="readmore"> <a href="#" class="open" >Read More</a> </div></div></div>'
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False:
         return redirect('/')
     blogs=json.loads(open("subjects.json").read())["eco"]
+    blogs.reverse()
     for x in blogs:
         layout+=base.replace("uname",f"By : {x['uploader']}").replace("data",x["data"]).replace("title",x["title"]).replace("#",f'http://127.0.0.1:5000/blog?id={x["uuid"]}')
     return make_response(layout)
@@ -91,11 +105,12 @@ def eng():
     args=request.args.to_dict()
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False or "eng" not in get_user_details(request.cookies.get('id'))[1]:
         return make_response("Unauth Access")
-    layout="""<style>.allposts{display: flex; flex-wrap: wrap; justify-content: space-around;}.card{width: 25%; border: 1px solid var(--grey); margin-block: 5vh; border-radius: 4px; display: flex; flex-direction: column; background-color :ghostwhite;}.posttitle{text-align: center;}.article{height: 116px; overflow: hidden; text-overflow: ellipsis; text-align: justify; margin: 20px;}.author{padding-inline: 20px; text-align: end;}a{align-self: flex-end; border-top: 1px solid var(--grey); display: block; text-align: center; padding: 10px; text-decoration: none; cursor: pointer;}</style>"""
+    layout='<link rel="stylesheet" href="blog.css">'
     base='<div class="allposts"> <div class="card"> <h2 class="posttitle">title</h2> <div class="author">uname</div><div class="article"> data </div><div class="readmore"> <a href="#" class="open" >Read More</a> </div></div></div>'
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False:
         return redirect('/')
     blogs=json.loads(open("subjects.json").read())["eng"]
+    blogs.reverse()
     for x in blogs:
         layout+=base.replace("uname",f"By : {x['uploader']}").replace("data",x["data"]).replace("title",x["title"]).replace("#",f'http://127.0.0.1:5000/blog?id={x["uuid"]}')
     return make_response(layout)
@@ -122,11 +137,12 @@ def blog_general_upload():
 
 @app.route('/blogs')
 def blogs():
-    layout="""<style>.allposts{display: flex; flex-wrap: wrap; justify-content: space-around;}.card{width: 25%; border: 1px solid var(--grey); margin-block: 5vh; border-radius: 4px; display: flex; flex-direction: column; background-color :ghostwhite;}.posttitle{text-align: center;}.article{height: 116px; overflow: hidden; text-overflow: ellipsis; text-align: justify; margin: 20px;}.author{padding-inline: 20px; text-align: end;}a{align-self: flex-end; border-top: 1px solid var(--grey); display: block; text-align: center; padding: 10px; text-decoration: none; cursor: pointer;}</style>"""
+    layout='<link rel="stylesheet" href="blog.css">'
     base='<div class="allposts"> <div class="card"> <h2 class="posttitle">title</h2> <div class="author">uname</div><div class="article"> data </div><div class="readmore"> <a href="#" class="open" >Read More</a> </div></div></div>'
     if request.cookies.get('id')==None or request.cookies.get('password')==None or os.path.exists(f'users/{request.cookies.get("id")}')==False:
         return redirect('/')
     blogs=json.loads(open("blogs.json").read())
+    blogs.reverse()
     for x in blogs:
         layout+=base.replace("uname",f"By : {x['uploader']}").replace("data",x["data"]).replace("title",x["title"]).replace("#",f'http://127.0.0.1:5000/blog?id={x["uuid"]}')
     return make_response(layout)
@@ -134,5 +150,13 @@ def blogs():
 @app.route('/panel')
 def panel():
     return render_template("upload.html")
+
+@app.route("/blog.css")
+def give_blogcss():
+    return make_response(open("templates/blog.css").read())
+
+@app.route("/landing.css")
+def give_landingcss():
+    return make_response(open("templates/landing.css").read())
 
 app.run(debug=True)
