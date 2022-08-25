@@ -5,11 +5,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<style>
-  @import url("https://fonts.googleapis.com/css?family=Poppins");
-*{
-  font-family: 'Poppins';font-size: 22px;
-}
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400&display=swap" rel="stylesheet">
+    <style>
+    * {
+      box-sizing: border-box;
+      font-family:'Lato', sans-serif;
+    }
   input[type=text], select {
   width: 100%;
   padding: 12px 20px;
@@ -37,8 +39,12 @@ input[type=submit]:hover {
 
 div {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-color: #ffffff;
   padding: 20px;
+
+}
+.register{
+  box-shadow: rgba(99,99,99,0.2) 0px 2px 8px 0px;
 }
 </style>
     <title>Document</title>
@@ -47,28 +53,30 @@ div {
     <div class="register">
       <h1>Register</h1>
         <div>
-          <label for="name">Name</label>
+          <label for="name">Name      :</label>
           <input
             id="name"
           />
         </div>
         <div>
-          <label for="password">Password</label>
+          <label>Password:</label>
           <input type="password" id="password" />
         </div>
         <div>
           <p>Subjects</p>
           <div class="sub">
-            <input type="checkbox" id="eco" />
             <label for="Economics">Economics</label>
+            <input type="checkbox" id="eco" />
+            
           </div>
           <div class="sub">
-            <input type="checkbox" id="eng" />
             <label for="English">English</label>
+            <input type="checkbox" id="eng" />
           </div>
           <div class="sub">
-            <input type="checkbox" id="teacher" />
             <label for="teah">Teacher</label>
+            <input type="radio" id="teacher" />
+            
           </div>
         </div>
         <button id="track">Register</button>
@@ -77,7 +85,7 @@ div {
   </body>
   <script>
     document.getElementById("track").addEventListener("click",()=>{
-        var teacher=document.getElementById('teacher').checked
+        var teacher=document.getElementById('teacher').value
         var subjects=[]
         if (document.getElementById("eng").checked){
             subjects.push("eng")

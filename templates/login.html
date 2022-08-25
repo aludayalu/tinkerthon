@@ -1,7 +1,9 @@
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;1,100;1,300;1,400&display=swap" rel="stylesheet">
 <style>
-    @import url("https://fonts.googleapis.com/css?family=Poppins");
-*{
-  font-family: 'Poppins';font-size: 22px;
+* {
+  box-sizing: border-box;
+  font-family:'Lato', sans-serif;
 }
     input[type=text], select {
     width: 100%;
@@ -30,20 +32,23 @@
   
   div {
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: #ffffff;
     padding: 20px;
   }
+  .login{
+  box-shadow: rgba(99,99,99,0.2) 0px 2px 8px 0px;
+}
   </style>
 <div class="login">
     <h1>Login</h1>
       <div>
-        <label for="name">Name</label>
+        <p for="name">Name</p>
         <input
           id="name"
         />
       </div>
       <div>
-        <label for="password">Password</label>
+        <p for="password">Password</p>
         <input type="password" id="password" />
       </div>
       <button id="track">Login</button>
